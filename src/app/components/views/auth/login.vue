@@ -8,12 +8,6 @@
 
 				<md-card-content>
 					<form style="width:350px">
-						
-						<md-input-container>
-							<label>Customer Id</label>
-							<md-input v-model="payload.customerId"></md-input>
-						</md-input-container>
-						
 						<md-input-container>
 							<label>User Id</label>
 							<md-input v-model="payload.userId"></md-input>
@@ -55,7 +49,6 @@ export default {
 	data() {
 		return {
 			payload: {
-				customerId: '',
 				userId: '',
 				password: '',
 				redirect: ''
@@ -83,10 +76,10 @@ export default {
 		},
 
 		login() {
-			const { customerId, userId, password, redirect } = this.payload;
+			const { userId, password, redirect } = this.payload;
 			const _redirect = (redirect != null && redirect != '') ? redirect : '/viewCustomers';
 
-			if (!customerId || !userId || !password) return this.flashError("Something went wrong");
+			if (!userId || !password) return this.flashError("Something went wrong");
 
 			this.$auth.login({
 					headers: {
@@ -94,7 +87,6 @@ export default {
 					},
 					data: {
 						payload: {
-							customerId,
 							userId,
 							password,
 						}
