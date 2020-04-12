@@ -114,7 +114,7 @@ export default {
 			if(allowed) data.allowed = allowed;
 		
 			if (Object.keys(data).length > 0) {
-				this.sendRequest(`/admin/register`, "POST", null, payload, result => {
+				this.sendRequest(`/admin/register`, "POST", null, data, result => {
 					if (result && !result.error && result.value && result.value.result && result.value.result) {
 						this.error.title = "Done";
 						this.error.message = "Data pushed to server";
@@ -136,7 +136,7 @@ export default {
 			if(password) data.password = password;
 
 			if (Object.keys(data).length > 0) {
-				this.sendRequest(`/admin/customers/update/${customerId}`, "PUT", null, payload, result => {
+				this.sendRequest(`/admin/customers/update/${customerId}`, "PUT", null, data, result => {
 					if (result && !result.error && result.value && result.value.result && result.value.result) {
 						this.error.title = "Done";
 						this.error.message = "Data pushed to server";

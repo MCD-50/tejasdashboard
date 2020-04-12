@@ -295,7 +295,18 @@ export default {
 
 		getItems(pageNumber = 1, search = null, callback = null) {
 			const { limit, sort } = this.options;
-			this.sendRequest(`/admin/activities?page=${pageNumber}&limit=${limit[this.helper.selectedLimitIndex]}`, 'GET', null, null, (result) => {
+			
+			let qsearch = "";
+
+			if (search && Object.keys(search).length > 0) {
+				for (var key of Object.keys(search)) {
+					qsearch += `&${key}=${search[key]}`;
+				}
+			}
+
+			qsearch = qsearch.trim();
+			
+			this.sendRequest(`/admin/activities?page=${pageNumber}&limit=${limit[this.helper.selectedLimitIndex]}${qsearch}`.trim(), 'GET', null, null, (result) => {
 				if (result && !result.error && result.value && result.value.result && result.value.result.data) {
 					this.payload.items = result.value.result.data.slice();
 					const _data = Object.assign({ pageFor: constant.ACTIVITY }, { data: result.value.result.data, pages: { total:result.value.result.count, current: pageNumber }});

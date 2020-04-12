@@ -140,7 +140,7 @@ export default {
 			if(freeze != this.helper.item.freeze) data.freeze = freeze;
 		
 			if (Object.keys(data).length > 0) {
-				this.sendRequest(`/admin/customers/update/${customerId}`, "PUT", null, payload, result => {
+				this.sendRequest(`/admin/customers/update/${customerId}`, "PUT", null, data, result => {
 					if (result && !result.error && result.value && result.value.result && result.value.result) {
 						this.error.title = "Done";
 						this.error.message = "Data pushed to server";

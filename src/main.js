@@ -38,8 +38,9 @@ Vue.use(VueAuth, {
 			this.options.http._setHeaders.call(this, req, { Authorization: token })
 		},
 		response: (res) => {
-			if (res && res.config && res.config.url && res.config.url.includes("/admin/login") && res.data && res.data && res.data.result) {
-				return res.data.result
+			console.log(res.data.result);
+			if (res && res.config && res.config.url && res.config.url.includes("/admin/login") && res.data && res.data && res.data.result && res.data.result.authorization) {
+				return res.data.result.authorization;
 			}
 		}
 	},

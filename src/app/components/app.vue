@@ -38,7 +38,7 @@ export default {
 		}
 
 
-		this.sendRequest(`/getDetail`, "GET", null, null, result => {
+		this.sendRequest(`/details/get`, "GET", null, null, result => {
 				if (result && !result.error && result.value && result.value.result && result.value.result) {
 					this.$store.dispatch("setMetaDetail", result.value.result);
 				}

@@ -86,10 +86,8 @@ export default {
 						'Content-Type': 'application/json'
 					},
 					data: {
-						payload: {
-							userId,
-							password,
-						}
+						userId,
+						password,
 					},
 					rememberMe: true,
 					redirect: _redirect,
