@@ -50,14 +50,18 @@
 							<md-input v-model="payload.handler"></md-input>
 						</md-input-container>
 
+						<md-datepicker v-model="payload.start">
+							<label>Start</label>
+						</md-datepicker>
+
 						<md-input-container>
 							<label>Start</label>
-							<md-datepicker required v-model="payload.start" />
+							<datepicker v-model="payload.start"></datepicker>
 						</md-input-container>
 
 						<md-input-container>
 							<label>End</label>
-							<md-datepicker required v-model="payload.end" />
+							<datepicker v-model="payload.end"></datepicker>
 						</md-input-container>
 
 						<md-input-container>
@@ -105,6 +109,8 @@
 
 
 <script>
+import DatePicker from 'vuejs-datepicker';
+
 import * as internet from '../../../../helper/internet';
 
 export default {
@@ -124,8 +130,8 @@ export default {
 				amount: "",
 				location: "",
 				handler: "",
-				start: null,
-				end: null,
+				start: new Date(),
+				end: new Date(),
 				limit: "20",
 				allowed: "mcx",
 			},
@@ -141,7 +147,9 @@ export default {
 			}
 		};
 	},
-
+	components: {
+		DatePicker,
+	},
 	methods: {
 		sendRequest(endPoint, method = "POST", token = null, data = null, callback) {
 			internet.makeRequest(endPoint, method, token, data)
