@@ -62,25 +62,19 @@
 							<md-input v-model="payload.limit"></md-input>
 						</md-input-container>
 
-						<md-input-container>
-							<label>Start</label>
-							<md-datepicker v-model="payload.start" />
-						</md-input-container>
+						<label>Start</label>
+						<datepicker v-model="payload.start"></datepicker>
 
-						<md-input-container>
-							<label>End</label>
-							<md-datepicker v-model="payload.end" />
-						</md-input-container>
+						<label>End</label>
+						<datepicker v-model="payload.end"></datepicker>
 
 						<md-input-container>
 							<label>Allowed (Must be seprated by the ,)</label>
 							<md-input v-model="payload.allowed"></md-input>
 						</md-input-container>
 
-						<md-input-container>
-							<label>Freeze</label>
-							<md-checkbox v-model="payload.freeze"></md-checkbox>
-						</md-input-container>
+						<label>Freeze</label>
+						<md-checkbox v-model="payload.freeze"></md-checkbox>
 
 						<md-input-container>
 							<label>Created At</label>
@@ -104,6 +98,8 @@
 
 
 <script>
+import DatePicker from 'vuejs-datepicker';
+
 import * as internet from '../../../../helper/internet';
 
 export default {
@@ -171,7 +167,9 @@ export default {
 			}
 		};
 	},
-
+	components: {
+		DatePicker,
+	},
 	methods: {
 		sendRequest(endPoint, method = "POST", token = null, data = null, callback) {
 			internet.makeRequest(endPoint, method, token, data)

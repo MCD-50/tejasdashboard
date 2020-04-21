@@ -64,12 +64,12 @@
 
 						<md-input-container>
 							<label>Start</label>
-							<md-datepicker disabled v-model="payload.start" />
+							<md-input disabled v-model="payload.start"></md-input>
 						</md-input-container>
 
 						<md-input-container>
 							<label>End</label>
-							<md-datepicker disabled v-model="payload.end" />
+							<md-input disabled v-model="payload.end"></md-input>
 						</md-input-container>
 
 						<md-input-container>

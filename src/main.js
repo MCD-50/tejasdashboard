@@ -12,7 +12,6 @@ import '../node_modules/vue-material/dist/vue-material.css';
 import VueFlashMessage from 'vue-flash-message';
 import 'vue-flash-message/dist/vue-flash-message.min.css';
 
-import DatePicker from 'vuejs-datepicker';
 import "vue-datetime/dist/vue-datetime.css"
 
 import App from './app/components/app.vue';
@@ -26,7 +25,6 @@ Vue.use(VueEvents)
 //define this before using vue-auth
 Vue.router = router
 Vue.use(VueAxios, axios)
-Vue.use(DatePicker)
 Vue.use(VueFlashMessage, {
 	messageOptions: {
 		timeout: 5000,

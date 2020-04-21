@@ -50,19 +50,11 @@
 							<md-input v-model="payload.handler"></md-input>
 						</md-input-container>
 
-						<md-datepicker v-model="payload.start">
-							<label>Start</label>
-						</md-datepicker>
+						<label>Start</label>
+						<datepicker v-model="payload.start"></datepicker>
 
-						<md-input-container>
-							<label>Start</label>
-							<datepicker v-model="payload.start"></datepicker>
-						</md-input-container>
-
-						<md-input-container>
-							<label>End</label>
-							<datepicker v-model="payload.end"></datepicker>
-						</md-input-container>
+						<label>End</label>
+						<datepicker v-model="payload.end"></datepicker>
 
 						<md-input-container>
 							<label>Limit</label>
