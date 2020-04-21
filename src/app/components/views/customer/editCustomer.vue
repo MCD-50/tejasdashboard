@@ -63,10 +63,10 @@
 						</md-input-container>
 
 						<label>Start</label>
-						<datepicker v-model="payload.start"></datepicker>
+						<DatePicker v-model="payload.start"></DatePicker>
 
 						<label>End</label>
-						<datepicker v-model="payload.end"></datepicker>
+						<DatePicker v-model="payload.end"></DatePicker>
 
 						<md-input-container>
 							<label>Allowed (Must be seprated by the ,)</label>
