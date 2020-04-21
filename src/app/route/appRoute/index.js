@@ -4,6 +4,7 @@ import Customer from './customer';
 import Activity from './activity';
 import Notification from "./notification";
 import Market from "./market";
+import Plan from "./plan";
 import Profile from "./profile"
 
 export const routeItems = [
@@ -13,5 +14,6 @@ export const routeItems = [
 	Activity,
 	Notification,
 	Market,
+	Plan,
 	Profile,
 ]

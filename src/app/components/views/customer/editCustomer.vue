@@ -23,13 +23,53 @@
 						</md-input-container>
 
 						<md-input-container>
-							<label>Limit</label>
-							<md-input v-model="payload.limit"></md-input>
+							<label>Name</label>
+							<md-input v-model="payload.name"></md-input>
 						</md-input-container>
 
 						<md-input-container>
 							<label>Type</label>
 							<md-input disabled v-model="payload.type"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Mobile</label>
+							<md-input v-model="payload.mobile"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Email</label>
+							<md-input v-model="payload.email"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Amount</label>
+							<md-input v-model="payload.amount"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Location</label>
+							<md-input v-model="payload.location"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Handler</label>
+							<md-input v-model="payload.handler"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Limit</label>
+							<md-input v-model="payload.limit"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Start</label>
+							<md-datepicker v-model="payload.start" />
+						</md-input-container>
+
+						<md-input-container>
+							<label>End</label>
+							<md-datepicker v-model="payload.end" />
 						</md-input-container>
 
 						<md-input-container>
@@ -101,10 +141,21 @@ export default {
 				_id: "",
 				customerId: "",
 				userId: "",
+				
+				name: "",
 				type: "",
+				mobile: "",
+				email: "",
+				amount: "",
+				location: "",
+				handler: "",
+				start: null,
+				end: null,
 				limit: "",
 				allowed: "",
+
 				freeze: false,
+				
 				createdAt: "",
 				updatedAt: ""
 			},
@@ -132,9 +183,18 @@ export default {
 
 
 		submit(e) {
-			const { customerId, limit, allowed, freeze } = this.payload;
+			const { customerId, name, mobile, email, amount, location, handler, start, end, limit, allowed, freeze } = this.payload;
 			
 			const data = {};
+			if(name != this.helper.item.name) data.name = name;
+			if(mobile != this.helper.item.mobile) data.mobile = mobile;
+			if(email != this.helper.item.email) data.email = email;
+			if(amount != this.helper.item.amount) data.amount = amount;
+			if(location != this.helper.item.location) data.location = location;
+			if(handler != this.helper.item.handler) data.handler = handler;
+			if(start != this.helper.item.start) data.start = start;
+			if(end != this.helper.item.end) data.end = end;
+
 			if(limit != this.helper.item.limit) data.limit = limit;
 			if(allowed != this.helper.item.allowed) data.allowed = allowed;
 			if(freeze != this.helper.item.freeze) data.freeze = freeze;

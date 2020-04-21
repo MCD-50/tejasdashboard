@@ -8,6 +8,11 @@
 				<md-card-content>
 					<form>
 						<md-input-container>
+							<label>Name</label>
+							<md-input v-model="payload.name"></md-input>
+						</md-input-container>
+
+						<md-input-container>
 							<label>Password</label>
 							<md-input required v-model="payload.password"></md-input>
 						</md-input-container>
@@ -18,6 +23,41 @@
 								<md-option value="user">USER</md-option>
 								<md-option value="admin">ADMIN</md-option>
 							</md-select>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Mobile</label>
+							<md-input v-model="payload.mobile"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Email</label>
+							<md-input v-model="payload.email"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Amount</label>
+							<md-input v-model="payload.amount"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Location</label>
+							<md-input v-model="payload.location"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Handler</label>
+							<md-input v-model="payload.handler"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Start</label>
+							<md-datepicker required v-model="payload.start" />
+						</md-input-container>
+
+						<md-input-container>
+							<label>End</label>
+							<md-datepicker required v-model="payload.end" />
 						</md-input-container>
 
 						<md-input-container>
@@ -76,8 +116,16 @@ export default {
 		return {
 			payload: {
 				customerId: "",
+				name: "",
 				password: "",
 				type: "user",
+				mobile: "",
+				email: "",
+				amount: "",
+				location: "",
+				handler: "",
+				start: null,
+				end: null,
 				limit: "20",
 				allowed: "mcx",
 			},
@@ -105,11 +153,20 @@ export default {
 
 
 		submitadd(e) {
-			const { password, type, limit, allowed } = this.payload;
+			const { name, password, type, mobile, email, amount, location, handler, start, end, limit, allowed } = this.payload;
 			
 			const data = {};
+			if(name) data.name = name;
 			if(password) data.password = password;
 			if(type) data.type = type;
+			if(mobile) data.mobile = mobile;
+			if(email) data.email = email;
+			if(amount) data.amount = amount;
+			if(location) data.location = location;
+			if(handler) data.handler = handler;
+			if(start) data.start = start;
+			if(end) data.end = end;
+
 			if(limit) data.limit = limit;
 			if(allowed) data.allowed = allowed;
 		
