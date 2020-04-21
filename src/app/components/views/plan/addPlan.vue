@@ -65,11 +65,11 @@ export default {
 
 
 		submitadd(e) {
-			const { name, plan } = this.payload;
+			const { name, price } = this.payload;
 			
 			const data = {};
 			if(name) data.name = name;
-			if(plan) data.plan = plan;
+			if(price) data.price = price;
 
 			if (Object.keys(data).length > 0) {
 				this.sendRequest(`/admin/plans/create`, "POST", null, data, result => {
