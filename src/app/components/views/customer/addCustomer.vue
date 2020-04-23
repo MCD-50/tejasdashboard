@@ -50,12 +50,6 @@
 							<md-input v-model="payload.handler"></md-input>
 						</md-input-container>
 
-						<label>Start</label>
-						<DatePicker v-model="payload.start"></DatePicker>
-
-						<label>End</label>
-						<DatePicker v-model="payload.end"></DatePicker>
-
 						<md-input-container>
 							<label>Limit</label>
 							<md-input v-model="payload.limit"></md-input>
@@ -65,6 +59,23 @@
 							<label>Allowed</label>
 							<md-input v-model="payload.allowed"></md-input>
 						</md-input-container>
+
+						<md-input-container>
+							<label>Device</label>
+							<md-select v-model="payload.device">
+								<md-option value="mobile">MOBILE</md-option>
+								<md-option value="web">WEB</md-option>
+								<md-option value="all">ALL</md-option>
+							</md-select>
+						</md-input-container>
+
+						<label>Start</label>
+						<DatePicker v-model="payload.start"></DatePicker>
+
+						<label>End</label>
+						<DatePicker v-model="payload.end"></DatePicker>
+
+
 					</form>
 				</md-card-content>
 			</md-card-area>
@@ -126,6 +137,7 @@ export default {
 				end: new Date(),
 				limit: "20",
 				allowed: "mcx",
+				device: "all"
 			},
 			helper: {
 				item: null,
@@ -153,7 +165,7 @@ export default {
 
 
 		submitadd(e) {
-			const { name, password, type, mobile, email, amount, location, handler, start, end, limit, allowed } = this.payload;
+			const { name, password, type, mobile, email, amount, location, handler, start, end, limit, allowed, device } = this.payload;
 			
 			const data = {};
 			if(name) data.name = name;
@@ -169,6 +181,7 @@ export default {
 
 			if(limit) data.limit = limit;
 			if(allowed) data.allowed = allowed;
+			if(device) data.device = device;
 		
 			if (Object.keys(data).length > 0) {
 				this.sendRequest(`/admin/register`, "POST", null, data, result => {

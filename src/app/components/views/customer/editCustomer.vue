@@ -62,16 +62,25 @@
 							<md-input v-model="payload.limit"></md-input>
 						</md-input-container>
 
+						<md-input-container>
+							<label>Allowed (Must be seprated by the ,)</label>
+							<md-input v-model="payload.allowed"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Device</label>
+							<md-select v-model="payload.device">
+								<md-option value="mobile">MOBILE</md-option>
+								<md-option value="web">WEB</md-option>
+								<md-option value="all">ALL</md-option>
+							</md-select>
+						</md-input-container>
+
 						<label>Start</label>
 						<DatePicker v-model="payload.start"></DatePicker>
 
 						<label>End</label>
 						<DatePicker v-model="payload.end"></DatePicker>
-
-						<md-input-container>
-							<label>Allowed (Must be seprated by the ,)</label>
-							<md-input v-model="payload.allowed"></md-input>
-						</md-input-container>
 
 						<label>Freeze</label>
 						<md-checkbox v-model="payload.freeze"></md-checkbox>
@@ -149,6 +158,7 @@ export default {
 				end: null,
 				limit: "",
 				allowed: "",
+				device: "all",
 
 				freeze: false,
 				
@@ -181,7 +191,7 @@ export default {
 
 
 		submit(e) {
-			const { customerId, name, mobile, email, amount, location, handler, start, end, limit, allowed, freeze } = this.payload;
+			const { customerId, name, mobile, email, amount, location, handler, start, end, limit, allowed, device, freeze } = this.payload;
 			
 			const data = {};
 			if(name != this.helper.item.name) data.name = name;
@@ -195,6 +205,7 @@ export default {
 
 			if(limit != this.helper.item.limit) data.limit = limit;
 			if(allowed != this.helper.item.allowed) data.allowed = allowed;
+			if(device != this.helper.item.device) data.device = device;
 			if(freeze != this.helper.item.freeze) data.freeze = freeze;
 		
 			if (Object.keys(data).length > 0) {

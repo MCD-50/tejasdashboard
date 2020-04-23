@@ -63,6 +63,16 @@
 						</md-input-container>
 
 						<md-input-container>
+							<label>Allowed (Must be seprated by the ,)</label>
+							<md-input disabled v-model="payload.allowed"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Device</label>
+							<md-input disabled v-model="payload.device"></md-input>
+						</md-input-container>
+
+						<md-input-container>
 							<label>Start</label>
 							<md-input disabled v-model="payload.start"></md-input>
 						</md-input-container>
@@ -70,11 +80,6 @@
 						<md-input-container>
 							<label>End</label>
 							<md-input disabled v-model="payload.end"></md-input>
-						</md-input-container>
-
-						<md-input-container>
-							<label>Allowed (Must be seprated by the ,)</label>
-							<md-input disabled v-model="payload.allowed"></md-input>
 						</md-input-container>
 
 						<md-input-container>
@@ -150,6 +155,7 @@ export default {
 				end: null,
 				limit: "",
 				allowed: "",
+				device: "all",
 
 				freeze: false,
 				
