@@ -18,6 +18,11 @@
 						</md-input-container>
 
 						<md-input-container>
+							<label>Profile</label>
+							<md-input disabled v-model="payload.profile"></md-input>
+						</md-input-container>
+
+						<md-input-container>
 							<label>Market</label>
 							<md-input disabled v-model="payload.market"></md-input>
 						</md-input-container>
@@ -83,6 +88,7 @@ export default {
 			payload: {
 				_id: "",
 				customerId: "",
+				profile: "",
 				market: "",
 				target: "",
 				createdAt: "",
