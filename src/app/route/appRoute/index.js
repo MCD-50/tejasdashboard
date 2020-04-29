@@ -5,7 +5,9 @@ import Activity from './activity';
 import Notification from "./notification";
 import Market from "./market";
 import Plan from "./plan";
+import Portfolio from "./portfolio"
 import Profile from "./profile"
+
 
 export const routeItems = [
 	Login,
@@ -15,5 +17,6 @@ export const routeItems = [
 	Notification,
 	Market,
 	Plan,
+	Portfolio,
 	Profile,
 ]

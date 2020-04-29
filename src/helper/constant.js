@@ -3,4 +3,5 @@ export const NOTIFICATION = "NOTIFICATION";
 export const ACTIVITY = "ACTIVITY";
 export const CUSTOMER = "CUSTOMER";
 export const MARKET = "MARKET";
+export const PORTFOLIO = "PORTFOLIO";
 export const PLAN = "PLAN";

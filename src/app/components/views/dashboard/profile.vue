@@ -23,8 +23,8 @@
 						</md-input-container>
 
 						<md-input-container>
-							<label>Limit</label>
-							<md-input disabled v-model="payload.limit"></md-input>
+							<label>Name</label>
+							<md-input disabled v-model="payload.name"></md-input>
 						</md-input-container>
 
 						<md-input-container>
@@ -33,15 +33,60 @@
 						</md-input-container>
 
 						<md-input-container>
-							<label>Allowed</label>
+							<label>Mobile</label>
+							<md-input disabled v-model="payload.mobile"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Email</label>
+							<md-input disabled v-model="payload.email"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Amount</label>
+							<md-input disabled v-model="payload.amount"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Location</label>
+							<md-input disabled v-model="payload.location"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Handler</label>
+							<md-input disabled v-model="payload.handler"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Limit</label>
+							<md-input disabled v-model="payload.limit"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Allowed (Must be seprated by the ,)</label>
 							<md-input disabled v-model="payload.allowed"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Device</label>
+							<md-input disabled v-model="payload.device"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Start</label>
+							<md-input disabled v-model="payload.start"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>End</label>
+							<md-input disabled v-model="payload.end"></md-input>
 						</md-input-container>
 
 						<md-input-container>
 							<label>Freeze</label>
 							<md-checkbox disabled v-model="payload.freeze"></md-checkbox>
 						</md-input-container>
-
+						
 						<md-input-container>
 							<label>Created At</label>
 							<md-input disabled v-model="payload.createdAt"></md-input>
@@ -51,6 +96,7 @@
 							<label>Updated At</label>
 							<md-input disabled v-model="payload.updatedAt"></md-input>
 						</md-input-container>
+
 
 					</form>
 				</md-card-content>
@@ -95,10 +141,22 @@ export default {
 				_id: "",
 				customerId: "",
 				userId: "",
+
+				name: "",
 				type: "",
+				mobile: "",
+				email: "",
+				amount: "",
+				location: "",
+				handler: "",
+				start: null,
+				end: null,
 				limit: "",
 				allowed: "",
+				device: "all",
+
 				freeze: false,
+				
 				createdAt: "",
 				updatedAt: ""
 			},
