@@ -2,7 +2,7 @@
 	<div class="base-div">
 		<md-table-card>
 			<md-toolbar>
-				<h1 class="md-title">Notifications</h1>
+				<h1 class="md-title">Announcements</h1>
 				<md-button class="md-icon-button" id="custom" @click="openDialog('search_dialog')">
 					<md-icon>search</md-icon>
 				</md-button>
@@ -83,11 +83,11 @@ import * as collection from '../../../../helper/collection.js';
 
 export default {
 	beforeMount() {
-		this.$store.dispatch("setCurrentRoute", "/viewNotifications");
+		this.$store.dispatch("setCurrentRoute", "/viewAnnouncements");
 	},
 
 	mounted() {
-		if (this.$store.getters.pageFor == constant.NOTIFICATION) {
+		if (this.$store.getters.pageFor == constant.ANNOUNCEMENT) {
 			this.options.current = this.$store.getters.appPreviousPage;
 		}
 
@@ -119,7 +119,7 @@ export default {
 				key: '',
 				value: '',
 				searchColumns: [
-					{ key: 'Customer Id', value: 'customerId' },
+					{ key: 'Title', value: 'title' },
 				]
 			},
 			options: {
@@ -273,16 +273,15 @@ export default {
 
 		view(e, item) {
 			this.$router.push({
-				path: '/viewNotification', name: 'View Notification',
+				path: '/viewAnnouncement', name: 'View Announcement',
 				params: {
-					'customerId': item.customerId,
 					'objectId': item._id,
 				}
 			})
 		},
 
 		_delete(e, item) {
-			this.sendRequest(`/admin/notifications/delete/${item.customerId}/${item._id}`, "DELETE", null, null, result => {
+			this.sendRequest(`/admin/announcements/delete/${item._id}`, "DELETE", null, null, result => {
 				if (result && !result.error && result.value && result.value.result && result.value.result) {
 					this.error.title = "Done";
 					this.error.message = "Data pushed to server";
@@ -324,10 +323,10 @@ export default {
 
 			qsearch = qsearch.trim();
 			
-			this.sendRequest(`/admin/notifications?page=${pageNumber}&limit=${limit[this.helper.selectedLimitIndex]}${qsearch}`.trim(), 'GET', null, null, (result) => {
+			this.sendRequest(`/admin/announcements?page=${pageNumber}&limit=${limit[this.helper.selectedLimitIndex]}${qsearch}`.trim(), 'GET', null, null, (result) => {
 				if (result && !result.error && result.value && result.value.result && result.value.result.data) {
 					this.payload.items = result.value.result.data.slice();
-					const _data = Object.assign({ pageFor: constant.NOTIFICATION }, { data: result.value.result.data, pages: { total:result.value.result.count, current: pageNumber }});
+					const _data = Object.assign({ pageFor: constant.ANNOUNCEMENT }, { data: result.value.result.data, pages: { total:result.value.result.count, current: pageNumber }});
 					this.$store.dispatch('setItems', _data);
 					!this.helper.isColumnRendered && this.getColumns();
 					this.onPagination(null);

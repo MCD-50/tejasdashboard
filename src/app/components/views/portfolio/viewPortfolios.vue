@@ -79,7 +79,7 @@ import * as collection from '../../../../helper/collection.js';
 
 export default {
 	beforeMount() {
-		this.$store.dispatch("setCurrentRoute", "/viewMarkets");
+		this.$store.dispatch("setCurrentRoute", "/viewPortfolios");
 	},
 
 	mounted() {
@@ -116,7 +116,7 @@ export default {
 				value: '',
 				searchColumns: [
 					{ key: 'Customer Id', value: 'customerId' },
-					{ key: 'Portfolio', value: 'market' },
+					{ key: 'Market', value: 'market' },
 					{ key: 'Target', value: 'target' },
 				]
 			},
@@ -271,7 +271,7 @@ export default {
 
 		view(e, item) {
 			this.$router.push({
-				path: '/viewMarket', name: 'View Portfolio',
+				path: '/viewPortfolio', name: 'View Portfolio',
 				params: {
 					'customerId': item.customerId,
 					'objectId': item._id,

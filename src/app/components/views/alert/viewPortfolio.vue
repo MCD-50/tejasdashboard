@@ -3,7 +3,7 @@
 	<md-card class="dashboard-card">
 			<md-card-area>
 				<md-card-header>
-					<div class="md-title">View Notification</div>
+					<div class="md-title">View Alert</div>
 				</md-card-header>
 				<md-card-content>
 					<form>
@@ -18,18 +18,23 @@
 						</md-input-container>
 
 						<md-input-container>
-							<label>Title</label>
-							<md-input disabled v-model="payload.title"></md-input>
+							<label>Market</label>
+							<md-input disabled v-model="payload.market"></md-input>
 						</md-input-container>
 
 						<md-input-container>
-							<label>Message</label>
-							<md-input disabled v-model="payload.message"></md-input>
+							<label>Target</label>
+							<md-input disabled v-model="payload.target"></md-input>
 						</md-input-container>
 
 						<md-input-container>
-							<label>Link</label>
-							<md-input disabled v-model="payload.link"></md-input>
+							<label>Price</label>
+							<md-input disabled v-model="payload.price"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Trigger</label>
+							<md-input disabled v-model="payload.trigger"></md-input>
 						</md-input-container>
 
 						<md-input-container>
@@ -55,13 +60,13 @@ import * as internet from '../../../../helper/internet';
 
 export default {
 	beforeMount() {
-		this.$store.dispatch("setCurrentRoute", "/viewNotification");
+		this.$store.dispatch("setCurrentRoute", "/viewAlert");
 	},
 	mounted() {
 		const objectId = this.$route.params.objectId;
 		const customerId = this.$route.params.customerId;
 		if (objectId && customerId) {
-			this.sendRequest(`/admin/notifications/get/${customerId}/${objectId}`, "GET", null, null, result => {
+			this.sendRequest(`/admin/alerts/get/${customerId}/${objectId}`, "GET", null, null, result => {
 					if (result && !result.error && result.value && result.value.result && result.value.result) {
 						//set item and item id
 						const item = result.value.result;
@@ -88,9 +93,10 @@ export default {
 			payload: {
 				_id: "",
 				customerId: "",
-				title: "",
-				message: "",
-				link: "",
+				market: "",
+				target: "",
+				price: "",
+				trigger: "",
 				createdAt: "",
 				updatedAt: ""
 			},

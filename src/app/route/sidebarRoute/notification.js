@@ -7,6 +7,15 @@ export default {
 	},
 	children: [
 		{
+			name: 'Add Notification',
+			path: '/notification/addNotification',
+			meta: {
+				link: 'notification/addNotification.vue',
+				auth: true
+			},
+			component: require('../../components/views/notification/addNotification.vue')
+		},
+		{
 			name: 'View Notifications',
 			path: '/notification/viewNotifications',
 			meta: {
@@ -14,6 +23,7 @@ export default {
 				auth: true
 			},
 			component: require('../../components/views/notification/viewNotifications.vue')
+
 		}
 	]
 }

@@ -3,18 +3,13 @@
 	<md-card class="dashboard-card">
 			<md-card-area>
 				<md-card-header>
-					<div class="md-title">View Notification</div>
+					<div class="md-title">View Announcement</div>
 				</md-card-header>
 				<md-card-content>
 					<form>
 						<md-input-container>
 							<label>Object Id</label>
 							<md-input disabled v-model="payload._id"></md-input>
-						</md-input-container>
-
-						<md-input-container>
-							<label>Customer Id</label>
-							<md-input disabled v-model="payload.customerId"></md-input>
 						</md-input-container>
 
 						<md-input-container>
@@ -55,13 +50,12 @@ import * as internet from '../../../../helper/internet';
 
 export default {
 	beforeMount() {
-		this.$store.dispatch("setCurrentRoute", "/viewNotification");
+		this.$store.dispatch("setCurrentRoute", "/viewAnnouncement");
 	},
 	mounted() {
 		const objectId = this.$route.params.objectId;
-		const customerId = this.$route.params.customerId;
-		if (objectId && customerId) {
-			this.sendRequest(`/admin/notifications/get/${customerId}/${objectId}`, "GET", null, null, result => {
+		if (objectId) {
+			this.sendRequest(`/admin/announcements/get/${objectId}`, "GET", null, null, result => {
 					if (result && !result.error && result.value && result.value.result && result.value.result) {
 						//set item and item id
 						const item = result.value.result;
@@ -87,7 +81,6 @@ export default {
 		return {
 			payload: {
 				_id: "",
-				customerId: "",
 				title: "",
 				message: "",
 				link: "",

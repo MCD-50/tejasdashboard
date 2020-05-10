@@ -2,7 +2,7 @@
 	<div class="base-div">
 		<md-table-card>
 			<md-toolbar>
-				<h1 class="md-title">Notifications</h1>
+				<h1 class="md-title">Alerts</h1>
 				<md-button class="md-icon-button" id="custom" @click="openDialog('search_dialog')">
 					<md-icon>search</md-icon>
 				</md-button>
@@ -21,10 +21,6 @@
 							<md-button class="md-icon-button" @click="(e)=> view(e, row)">
 								<md-icon>remove_red_eye</md-icon>
 								<md-tooltip md-direction="top">View</md-tooltip>
-							</md-button>
-							<md-button class="md-icon-button" @click="(e)=> _delete(e, row)">
-								<md-icon>delete</md-icon>
-								<md-tooltip md-direction="top">Delete</md-tooltip>
 							</md-button>
 						</md-table-cell>
 						<md-table-cell v-for="(column, columnIndex) in row" :key="columnIndex">
@@ -83,11 +79,11 @@ import * as collection from '../../../../helper/collection.js';
 
 export default {
 	beforeMount() {
-		this.$store.dispatch("setCurrentRoute", "/viewNotifications");
+		this.$store.dispatch("setCurrentRoute", "/viewAlerts");
 	},
 
 	mounted() {
-		if (this.$store.getters.pageFor == constant.NOTIFICATION) {
+		if (this.$store.getters.pageFor == constant.PORTFOLIO) {
 			this.options.current = this.$store.getters.appPreviousPage;
 		}
 
@@ -120,6 +116,8 @@ export default {
 				value: '',
 				searchColumns: [
 					{ key: 'Customer Id', value: 'customerId' },
+					{ key: 'Market', value: 'market' },
+					{ key: 'Target', value: 'target' },
 				]
 			},
 			options: {
@@ -273,27 +271,12 @@ export default {
 
 		view(e, item) {
 			this.$router.push({
-				path: '/viewNotification', name: 'View Notification',
+				path: '/viewAlert', name: 'View Alert',
 				params: {
 					'customerId': item.customerId,
 					'objectId': item._id,
 				}
 			})
-		},
-
-		_delete(e, item) {
-			this.sendRequest(`/admin/notifications/delete/${item.customerId}/${item._id}`, "DELETE", null, null, result => {
-				if (result && !result.error && result.value && result.value.result && result.value.result) {
-					this.error.title = "Done";
-					this.error.message = "Data pushed to server";
-					this.flashSuccess("Data pushed to server.");
-					// this.openDialog();
-				} else {
-					this.error.title = "Something went wrong";
-					this.error.message = "Please check the network tab for more info.";
-					// this.openDialog();
-				}
-			});
 		},
 
 		getColumns() {
@@ -324,10 +307,10 @@ export default {
 
 			qsearch = qsearch.trim();
 			
-			this.sendRequest(`/admin/notifications?page=${pageNumber}&limit=${limit[this.helper.selectedLimitIndex]}${qsearch}`.trim(), 'GET', null, null, (result) => {
+			this.sendRequest(`/admin/alerts?page=${pageNumber}&limit=${limit[this.helper.selectedLimitIndex]}${qsearch}`.trim(), 'GET', null, null, (result) => {
 				if (result && !result.error && result.value && result.value.result && result.value.result.data) {
 					this.payload.items = result.value.result.data.slice();
-					const _data = Object.assign({ pageFor: constant.NOTIFICATION }, { data: result.value.result.data, pages: { total:result.value.result.count, current: pageNumber }});
+					const _data = Object.assign({ pageFor: constant.PORTFOLIO }, { data: result.value.result.data, pages: { total:result.value.result.count, current: pageNumber }});
 					this.$store.dispatch('setItems', _data);
 					!this.helper.isColumnRendered && this.getColumns();
 					this.onPagination(null);

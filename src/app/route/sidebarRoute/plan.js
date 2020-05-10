@@ -1,6 +1,6 @@
 
 export default {
-	name: 'Plan',
+	name: 'Plans',
 	meta: {
 		icon: 'person',
 		auth: true

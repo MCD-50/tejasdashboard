@@ -1,7 +1,9 @@
 export const ADMIN_USER = "ADMIN_USER";
 export const NOTIFICATION = "NOTIFICATION";
+export const ANNOUNCEMENT = "ANNOUNCEMENT";
 export const ACTIVITY = "ACTIVITY";
 export const CUSTOMER = "CUSTOMER";
+export const ALERT = "ALERT";
 export const MARKET = "MARKET";
 export const PORTFOLIO = "PORTFOLIO";
 export const PLAN = "PLAN";
