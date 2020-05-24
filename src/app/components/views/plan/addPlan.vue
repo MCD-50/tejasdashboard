@@ -16,6 +16,16 @@
 							<label>Price</label>
 							<md-input v-model="payload.price"></md-input>
 						</md-input-container>
+
+						<md-input-container>
+							<label>Description</label>
+							<md-input v-model="payload.description"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Rule</label>
+							<md-input v-model="payload.rule"></md-input>
+						</md-input-container>
 					</form>
 				</md-card-content>
 			</md-card-area>
@@ -40,6 +50,8 @@ export default {
 			payload: {
 				name: "",
 				price: "",
+				description: "",
+				rule: ""
 			},
 			helper: {
 				item: null,
@@ -65,11 +77,13 @@ export default {
 
 
 		submitadd(e) {
-			const { name, price } = this.payload;
+			const { name, price, description, rule } = this.payload;
 			
 			const data = {};
 			if(name) data.name = name;
 			if(price) data.price = price;
+			if(description) data.description = description
+			if(rule) data.rule = rule;
 
 			if (Object.keys(data).length > 0) {
 				this.sendRequest(`/admin/plans/create`, "POST", null, data, result => {

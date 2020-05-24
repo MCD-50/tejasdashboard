@@ -43,6 +43,16 @@
 						</md-input-container>
 
 						<md-input-container>
+							<label>Subscription Start</label>
+							<md-input disabled v-model="payload.start"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Subscription End</label>
+							<md-input disabled v-model="payload.end"></md-input>
+						</md-input-container>
+
+						<md-input-container>
 							<label>Amount</label>
 							<md-input disabled v-model="payload.amount"></md-input>
 						</md-input-container>
@@ -53,7 +63,12 @@
 						</md-input-container>
 
 						<md-input-container>
-							<label>Handler</label>
+							<label>Info</label>
+							<md-input disabled v-model="payload.info"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Relationship Manager</label>
 							<md-input disabled v-model="payload.handler"></md-input>
 						</md-input-container>
 
@@ -63,23 +78,13 @@
 						</md-input-container>
 
 						<md-input-container>
-							<label>Allowed (Must be seprated by the ,)</label>
+							<label>Allowed</label>
 							<md-input disabled v-model="payload.allowed"></md-input>
 						</md-input-container>
 
 						<md-input-container>
 							<label>Device</label>
 							<md-input disabled v-model="payload.device"></md-input>
-						</md-input-container>
-
-						<md-input-container>
-							<label>Start</label>
-							<md-input disabled v-model="payload.start"></md-input>
-						</md-input-container>
-
-						<md-input-container>
-							<label>End</label>
-							<md-input disabled v-model="payload.end"></md-input>
 						</md-input-container>
 
 						<md-input-container>
@@ -150,12 +155,13 @@ export default {
 				email: "",
 				amount: "",
 				location: "",
+				info: "",
 				handler: "",
-				start: null,
-				end: null,
+				start: "",
+				end: "",
 				limit: "",
 				allowed: "",
-				device: "all",
+				device: "",
 
 				freeze: false,
 				

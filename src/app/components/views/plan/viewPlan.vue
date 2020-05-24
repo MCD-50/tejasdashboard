@@ -23,6 +23,16 @@
 						</md-input-container>
 
 						<md-input-container>
+							<label>Description</label>
+							<md-input disabled v-model="payload.description"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Rule</label>
+							<md-input disabled v-model="payload.rule"></md-input>
+						</md-input-container>
+
+						<md-input-container>
 							<label>Created At</label>
 							<md-input disabled v-model="payload.createdAt"></md-input>
 						</md-input-container>
@@ -78,6 +88,8 @@ export default {
 				_id: "",
 				name: "",
 				price: "",
+				description: "",
+				rule: "",
 				createdAt: "",
 				updatedAt: ""
 			},

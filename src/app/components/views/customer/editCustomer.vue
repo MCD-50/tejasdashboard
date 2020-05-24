@@ -42,6 +42,12 @@
 							<md-input v-model="payload.email"></md-input>
 						</md-input-container>
 
+						<label>Subscription Start</label>
+						<DatePicker v-model="payload.start"></DatePicker>
+
+						<label>Subscription End</label>
+						<DatePicker v-model="payload.end"></DatePicker>
+
 						<md-input-container>
 							<label>Amount</label>
 							<md-input v-model="payload.amount"></md-input>
@@ -53,8 +59,17 @@
 						</md-input-container>
 
 						<md-input-container>
-							<label>Handler</label>
-							<md-input v-model="payload.handler"></md-input>
+							<label>Info</label>
+							<md-input v-model="payload.info"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Relationship Manager</label>
+							<md-select v-model="payload.handler">
+								<md-option value="tejas">TEJAS</md-option>
+								<md-option value="shekhar">SHEKHAR</md-option>
+								<md-option value="naresh">NARESH</md-option>
+							</md-select>
 						</md-input-container>
 
 						<md-input-container>
@@ -63,7 +78,7 @@
 						</md-input-container>
 
 						<md-input-container>
-							<label>Allowed (Must be seprated by the ,)</label>
+							<label>Allowed</label>
 							<md-input v-model="payload.allowed"></md-input>
 						</md-input-container>
 
@@ -75,12 +90,6 @@
 								<md-option value="all">ALL</md-option>
 							</md-select>
 						</md-input-container>
-
-						<label>Start</label>
-						<DatePicker v-model="payload.start"></DatePicker>
-
-						<label>End</label>
-						<DatePicker v-model="payload.end"></DatePicker>
 
 						<label>Freeze</label>
 						<md-checkbox v-model="payload.freeze"></md-checkbox>
@@ -153,10 +162,11 @@ export default {
 				email: "",
 				amount: "",
 				location: "",
+				info: "",
 				handler: "",
-				start: null,
-				end: null,
-				limit: "",
+				start: new Date(),
+				end: new Date(),
+				limit: "20",
 				allowed: "",
 				device: "all",
 
@@ -191,7 +201,7 @@ export default {
 
 
 		submit(e) {
-			const { customerId, name, mobile, email, amount, location, handler, start, end, limit, allowed, device, freeze } = this.payload;
+			const { customerId, name, mobile, email, amount, location, info, handler, start, end, limit, allowed, device, freeze } = this.payload;
 			
 			const data = {};
 			if(name != this.helper.item.name) data.name = name;
@@ -199,6 +209,7 @@ export default {
 			if(email != this.helper.item.email) data.email = email;
 			if(amount != this.helper.item.amount) data.amount = amount;
 			if(location != this.helper.item.location) data.location = location;
+			if(info != this.helper.item.info) data.info = info;
 			if(handler != this.helper.item.handler) data.handler = handler;
 			if(start != this.helper.item.start) data.start = start;
 			if(end != this.helper.item.end) data.end = end;

@@ -122,6 +122,7 @@ export default {
 					{ key: 'Customer Id', value: 'customerId' },
 					{ key: 'User Id', value: 'userId' },
 					{ key: 'Type', value: 'type' },
+					{ key: 'Relationship Manager', value: 'handler' },
 				]
 			},
 			options: {

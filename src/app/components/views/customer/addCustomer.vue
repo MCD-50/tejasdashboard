@@ -13,6 +13,11 @@
 						</md-input-container>
 
 						<md-input-container>
+							<label>User Id</label>
+							<md-input required v-model="payload.userId"></md-input>
+						</md-input-container>
+
+						<md-input-container>
 							<label>Password</label>
 							<md-input required v-model="payload.password"></md-input>
 						</md-input-container>
@@ -35,6 +40,12 @@
 							<md-input v-model="payload.email"></md-input>
 						</md-input-container>
 
+						<label>Subscription Start</label>
+						<DatePicker v-model="payload.start"></DatePicker>
+
+						<label>Subscription End</label>
+						<DatePicker v-model="payload.end"></DatePicker>
+
 						<md-input-container>
 							<label>Amount</label>
 							<md-input v-model="payload.amount"></md-input>
@@ -46,8 +57,17 @@
 						</md-input-container>
 
 						<md-input-container>
-							<label>Handler</label>
-							<md-input v-model="payload.handler"></md-input>
+							<label>Info</label>
+							<md-input v-model="payload.info"></md-input>
+						</md-input-container>
+
+						<md-input-container>
+							<label>Relationship Manager</label>
+							<md-select v-model="payload.handler">
+								<md-option value="tejas">TEJAS</md-option>
+								<md-option value="shekhar">SHEKHAR</md-option>
+								<md-option value="naresh">NARESH</md-option>
+							</md-select>
 						</md-input-container>
 
 						<md-input-container>
@@ -68,14 +88,6 @@
 								<md-option value="all">ALL</md-option>
 							</md-select>
 						</md-input-container>
-
-						<label>Start</label>
-						<DatePicker v-model="payload.start"></DatePicker>
-
-						<label>End</label>
-						<DatePicker v-model="payload.end"></DatePicker>
-
-
 					</form>
 				</md-card-content>
 			</md-card-area>
@@ -125,6 +137,7 @@ export default {
 		return {
 			payload: {
 				customerId: "",
+				userId: "",
 				name: "",
 				password: "",
 				type: "user",
@@ -132,11 +145,12 @@ export default {
 				email: "",
 				amount: "",
 				location: "",
+				info: "",
 				handler: "",
 				start: new Date(),
 				end: new Date(),
 				limit: "20",
-				allowed: "mcx",
+				allowed: "",
 				device: "all"
 			},
 			helper: {
@@ -154,6 +168,9 @@ export default {
 	components: {
 		DatePicker,
 	},
+	// computed: {
+
+	// },
 	methods: {
 		sendRequest(endPoint, method = "POST", token = null, data = null, callback) {
 			internet.makeRequest(endPoint, method, token, data)
@@ -165,16 +182,18 @@ export default {
 
 
 		submitadd(e) {
-			const { name, password, type, mobile, email, amount, location, handler, start, end, limit, allowed, device } = this.payload;
+			const { name, userId, password, type, mobile, email, amount, location, info, handler, start, end, limit, allowed, device } = this.payload;
 			
 			const data = {};
-			if(name) data.name = name;
+			if(userId) data.userId = userId;
 			if(password) data.password = password;
 			if(type) data.type = type;
+			if(name) data.name = name;
 			if(mobile) data.mobile = mobile;
 			if(email) data.email = email;
 			if(amount) data.amount = amount;
 			if(location) data.location = location;
+			if(info) data.info = info;
 			if(handler) data.handler = handler;
 			if(start) data.start = start;
 			if(end) data.end = end;
