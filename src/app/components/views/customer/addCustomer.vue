@@ -77,7 +77,9 @@
 
 						<md-input-container>
 							<label>Allowed</label>
-							<md-input v-model="payload.allowed"></md-input>
+							<md-select v-model="payload.allowed" multiple>
+								<md-option v-for="(value, index) in Markets" :key="index" :value="value"> {{String(value).toUpperCase()}}</md-option>
+							</md-select>
 						</md-input-container>
 
 						<md-input-container>
@@ -150,7 +152,7 @@ export default {
 				start: new Date(),
 				end: new Date(),
 				limit: "20",
-				allowed: "",
+				allowed: [],
 				device: "all"
 			},
 			helper: {
@@ -168,9 +170,15 @@ export default {
 	components: {
 		DatePicker,
 	},
-	// computed: {
-
-	// },
+	computed: {
+		Markets() {
+			const meta = this.$store.getters.appMetaDetail;
+			if(meta && meta.markets) {
+				return meta.markets;
+			}
+			return [];
+		}
+	},
 	methods: {
 		sendRequest(endPoint, method = "POST", token = null, data = null, callback) {
 			internet.makeRequest(endPoint, method, token, data)
@@ -199,7 +207,7 @@ export default {
 			if(end) data.end = end;
 
 			if(limit) data.limit = limit;
-			if(allowed) data.allowed = allowed;
+			if(allowed) data.allowed = allowed.join(",");
 			if(device) data.device = device;
 		
 			if (Object.keys(data).length > 0) {

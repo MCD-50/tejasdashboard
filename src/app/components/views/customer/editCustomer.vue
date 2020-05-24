@@ -79,7 +79,9 @@
 
 						<md-input-container>
 							<label>Allowed</label>
-							<md-input v-model="payload.allowed"></md-input>
+							<md-select v-model="payload.allowed" multiple>
+								<md-option v-for="(value, index) in Markets" :key="index" :value="value"> {{String(value).toUpperCase()}}</md-option>
+							</md-select>
 						</md-input-container>
 
 						<md-input-container>
@@ -137,7 +139,11 @@ export default {
 
 						Object.keys(item).map(key => {
 							if (key in this.payload) {
-								_[key] = item[key];
+								if (key == "allowed") {
+									_[key] = item[key].split(",");
+								} else {
+									_[key] = item[key];
+								}
 							}
 						});
 
@@ -164,10 +170,10 @@ export default {
 				location: "",
 				info: "",
 				handler: "",
-				start: new Date(),
-				end: new Date(),
+				start: "",
+				end: "",
 				limit: "20",
-				allowed: "",
+				allowed: [],
 				device: "all",
 
 				freeze: false,
@@ -189,6 +195,15 @@ export default {
 	},
 	components: {
 		DatePicker,
+	},
+	computed: {
+		Markets() {
+			const meta = this.$store.getters.appMetaDetail;
+			if(meta && meta.markets) {
+				return meta.markets;
+			}
+			return [];
+		}
 	},
 	methods: {
 		sendRequest(endPoint, method = "POST", token = null, data = null, callback) {
@@ -215,7 +230,7 @@ export default {
 			if(end != this.helper.item.end) data.end = end;
 
 			if(limit != this.helper.item.limit) data.limit = limit;
-			if(allowed != this.helper.item.allowed) data.allowed = allowed;
+			if(allowed != this.helper.item.allowed) data.allowed = allowed.join(",");
 			if(device != this.helper.item.device) data.device = device;
 			if(freeze != this.helper.item.freeze) data.freeze = freeze;
 		
