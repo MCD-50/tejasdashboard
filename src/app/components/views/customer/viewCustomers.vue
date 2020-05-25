@@ -121,6 +121,10 @@ export default {
 				searchColumns: [
 					{ key: 'Customer Id', value: 'customerId' },
 					{ key: 'User Id', value: 'userId' },
+					{ key: 'Name', value: 'name' },
+					{ key: 'Mobile', value: 'mobile' },
+					{ key: 'Email', value: 'email' },
+					{ key: 'Market', value: 'allowed' },
 					{ key: 'Type', value: 'type' },
 					{ key: 'Relationship Manager', value: 'handler' },
 				]

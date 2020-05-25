@@ -40,10 +40,10 @@
 							<md-input v-model="payload.email"></md-input>
 						</md-input-container>
 
-						<label>Subscription Start</label>
+						<label>Subscription Start *</label>
 						<DatePicker v-model="payload.start"></DatePicker>
 
-						<label>Subscription End</label>
+						<label>Subscription End *</label>
 						<DatePicker v-model="payload.end"></DatePicker>
 
 						<md-input-container>
@@ -72,19 +72,19 @@
 
 						<md-input-container>
 							<label>Limit</label>
-							<md-input v-model="payload.limit"></md-input>
+							<md-input required v-model="payload.limit"></md-input>
 						</md-input-container>
 
 						<md-input-container>
-							<label>Allowed</label>
-							<md-select v-model="payload.allowed" multiple>
+							<label>Market</label>
+							<md-select required v-model="payload.allowed" multiple>
 								<md-option v-for="(value, index) in Markets" :key="index" :value="value"> {{String(value).toUpperCase()}}</md-option>
 							</md-select>
 						</md-input-container>
 
 						<md-input-container>
 							<label>Device</label>
-							<md-select v-model="payload.device">
+							<md-select required v-model="payload.device">
 								<md-option value="mobile">MOBILE</md-option>
 								<md-option value="web">WEB</md-option>
 								<md-option value="all">ALL</md-option>
@@ -151,7 +151,7 @@ export default {
 				handler: "",
 				start: new Date(),
 				end: new Date(),
-				limit: "20",
+				limit: "150",
 				allowed: [],
 				device: "all"
 			},

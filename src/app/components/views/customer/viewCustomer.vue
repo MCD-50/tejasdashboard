@@ -78,7 +78,7 @@
 						</md-input-container>
 
 						<md-input-container>
-							<label>Allowed</label>
+							<label>Market</label>
 							<md-input disabled v-model="payload.allowed"></md-input>
 						</md-input-container>
 
