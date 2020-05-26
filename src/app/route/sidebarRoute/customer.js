@@ -24,6 +24,16 @@ export default {
 			},
 			component: require('../../components/views/customer/viewCustomers.vue')
 
+		},
+		{
+			name: 'View Expiries',
+			path: '/customer/viewExpiries',
+			meta: {
+				link: 'customer/viewExpiries.vue',
+				auth: true
+			},
+			component: require('../../components/views/customer/viewExpiries.vue')
+
 		}
 	]
 }

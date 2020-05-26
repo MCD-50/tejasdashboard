@@ -203,13 +203,15 @@ export default {
 			if(location) data.location = location;
 			if(info) data.info = info;
 			if(handler) data.handler = handler;
-			if(start) data.start = start;
-			if(end) data.end = end;
+			if(start) data.start = start.toISOString();
+			if(end) data.end = end.toISOString();
 
 			if(limit) data.limit = limit;
 			if(allowed) data.allowed = allowed.join(",");
 			if(device) data.device = device;
-		
+
+			console.log(data)
+
 			if (Object.keys(data).length > 0) {
 				this.sendRequest(`/admin/register`, "POST", null, data, result => {
 					if (result && !result.error && result.value && result.value.result && result.value.result) {

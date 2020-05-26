@@ -226,8 +226,8 @@ export default {
 			if(location != this.helper.item.location) data.location = location;
 			if(info != this.helper.item.info) data.info = info;
 			if(handler != this.helper.item.handler) data.handler = handler;
-			if(start != this.helper.item.start) data.start = start;
-			if(end != this.helper.item.end) data.end = end;
+			if(start != this.helper.item.start) data.start = start.toISOString();
+			if(end != this.helper.item.end) data.end = end.toISOString();
 
 			if(limit != this.helper.item.limit) data.limit = limit;
 			if(allowed != this.helper.item.allowed) data.allowed = allowed.join(",");
